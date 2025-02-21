@@ -3,7 +3,7 @@ import { Navigation } from "~/Navigation";
 
 export default function Page() {
     return <div>
-        <header>Admin / Demo</header>
+        <header>Admin Index</header>
         <hr />
         <Navigation />
     </div>

@@ -3,8 +3,12 @@ import { Navigation } from "~/Navigation";
 
 export default function Page() {
     return <div>
-        <header>Admin / Demo</header>
-        <hr />
+        <header>Account Layout</header>
+        <div style={{ padding: 12 }}>
+            <hr />
+            <Outlet />
+            <hr />
+        </div>
         <Navigation />
     </div>
 }
