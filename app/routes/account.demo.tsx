@@ -3,7 +3,7 @@ import { Navigation } from "~/Navigation";
 
 export default function Page() {
     return <div>
-        <header>Admin / Demo</header>
+        <header>/account.demo.tsx</header>
         <hr />
         <Navigation />
     </div>

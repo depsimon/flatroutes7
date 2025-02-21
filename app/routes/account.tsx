@@ -3,7 +3,7 @@ import { Navigation } from "~/Navigation";
 
 export default function Page() {
     return <div>
-        <header>Account Layout</header>
+        <header>/account.tsx</header>
         <div style={{ padding: 12 }}>
             <hr />
             <Outlet />

@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   return <div>
-    <header>Home Page</header>
+    <header>/_index.tsx</header>
         <Navigation />
   </div>
 }
