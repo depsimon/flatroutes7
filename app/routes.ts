@@ -1,9 +1,25 @@
 import { type RouteConfig, index } from "@react-router/dev/routes";
 import { remixRoutesOptionAdapter } from "@react-router/remix-routes-option-adapter";
-import { flatRoutes } from "remix-flat-routes";
+import { flatRoutes, type RouteManifest } from "remix-flat-routes";
+
+function vercelRoutes(routes: RouteManifest) {
+  const fixedRoutes: RouteManifest = {};
+
+  Object.entries(routes).forEach(([routeId, route]) => {
+    route.id = routeId.replaceAll("+", "");
+
+    if (route.parentId) {
+      route.parentId = route.parentId.replaceAll("+", "");
+    }
+
+    fixedRoutes[route.id] = route;
+  });
+
+  return fixedRoutes;
+}
 
 export default remixRoutesOptionAdapter((defineRoutes) => {
-    return flatRoutes("routes", defineRoutes, {
+    const routes = flatRoutes("routes", defineRoutes, {
       ignoredRouteFiles: ['**/.*'], // Ignore dot files (like .DS_Store)
       //appDir: 'app',
       //routeDir: 'routes',
@@ -12,4 +28,6 @@ export default remixRoutesOptionAdapter((defineRoutes) => {
       nestedDirectoryChar: '-',
       //routeRegex: /((\${nestedDirectoryChar}[\/\\][^\/\\:?*]+)|[\/\\]((index|route|layout|page)|(_[^\/\\:?*]+)|([^\/\\:?*]+\.route)))\.(ts|tsx|js|jsx|md|mdx)$$/,
     });
+
+    return vercelRoutes(routes)
   });
